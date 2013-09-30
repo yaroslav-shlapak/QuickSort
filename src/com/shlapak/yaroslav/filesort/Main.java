@@ -2,8 +2,8 @@ package com.shlapak.yaroslav.filesort;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.swing.SwingUtilities;
 
 public class Main {
 
@@ -30,11 +30,11 @@ public class Main {
 		
 		
 		// запуск программы в safe потоке
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				setGUI();
-//			}
-//		});
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				setGUI();
+			}
+		});
 	}
 
 	private static void setGUI() {

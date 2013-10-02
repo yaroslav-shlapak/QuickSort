@@ -20,14 +20,11 @@ public class Main {
 		vv = bufFile.readFile(pathForSort);
 		QuickSort<Double> qs = new QuickSort<Double>();
 		System.out.println(vv);
-		System.out.println("Test1");
+		System.out.println(vv.size());
 		qs.sort(vv);
 		System.out.println(vv);
 		System.out.println("Test3");
 		bufFile.writeFile(pathSorted, vv);
-		
-		
-		
 		
 		// запуск программы в safe потоке
 		SwingUtilities.invokeLater(new Runnable() {

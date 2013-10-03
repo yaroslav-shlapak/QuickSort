@@ -2,6 +2,8 @@ package com.shlapak.yaroslav.filesort;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -14,14 +16,14 @@ public class Main {
 		Path pathForSort = Paths.get("D:\\temp\\ololo.txt");
 		Path pathSorted = Paths.get("D:\\temp\\ololoSorted.txt");
 		
-		BufferedFileIO bufFile = new BufferedFileIO(charsetName);
+		BufferedFileIO<Double> bufFile = new BufferedFileIO<Double>(charsetName);
 		
-		NewArrayList<Double> vv = new NewArrayList<Double>();
-		vv = bufFile.readFile(pathForSort);
+		List<Double> vv = new ArrayList<Double>();
+		vv = bufFile.readFile(pathForSort, vv);
 		QuickSort<Double> qs = new QuickSort<Double>();
 		System.out.println(vv);
 		System.out.println(vv.size());
-		qs.sort(vv);
+		qs.sort(vv); 
 		System.out.println(vv);
 		System.out.println("Test3");
 		bufFile.writeFile(pathSorted, vv);

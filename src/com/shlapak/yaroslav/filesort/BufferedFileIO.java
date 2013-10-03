@@ -6,34 +6,31 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Vector;
+import java.util.List;
 
-public class BufferedFileIO {
+public class BufferedFileIO <T extends Number> {
 	
 	private Charset charset;
-	NewArrayList<Double> vect;
 	
 	public BufferedFileIO(String charsetName) {
 		this.charset = Charset.forName(charsetName);
 	}
 
-	public NewArrayList<Double> readFile(Path path) {
-		vect = new NewArrayList<Double>();
+	public List<Double> readFile(Path path, List<Double> list) {
 		try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				vect.add(Double.parseDouble(line));
+				list.add(Double.parseDouble(line));
 			}
 		} catch (IOException x) {
 			System.err.format("IOException: %s%n", x);
 		}
-		return vect;
+		return list;
 	}
 	
-	public void writeFile(Path path, NewArrayList<Double> vect) {
+	public void writeFile(Path path, List<T> list) {
 		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-			for(Double d : vect) {
+			for(T d : list) {
 				String s = String.valueOf(d);
 				writer.write(s, 0, s.length());
 				writer.newLine();

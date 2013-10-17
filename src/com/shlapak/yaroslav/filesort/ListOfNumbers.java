@@ -18,8 +18,7 @@ public class ListOfNumbers {
     
     public void readList(String fileName) {
     	String line = null;
-    	try {
-    		RandomAccessFile raf = new RandomAccessFile(fileName, "r");
+    	try (RandomAccessFile raf = new RandomAccessFile(fileName, "r")) {
     		while ((line = raf.readLine()) != null) {
     			Integer i = new Integer(Integer.parseInt(line));
     			System.out.println(i);

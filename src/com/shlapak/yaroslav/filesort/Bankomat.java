@@ -25,7 +25,7 @@ public class Bankomat implements ActionListener {
 
         frame.getContentPane().add(mainPanel);
 
-        addComponents();
+        //addComponents();
 
         //свойства фрейма
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -35,7 +35,7 @@ public class Bankomat implements ActionListener {
         frame.setVisible(true);
 
         //показать баланс в формате в текстовом окне
-        displayBalance();
+      //  displayBalance();
     }
 
     // добавление всех необходимых компонентов
@@ -73,14 +73,14 @@ public class Bankomat implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //нажали кнопку "Снять"
-        if (e.getSource() == jbtnWithdraw) {
-            withdraw();
-
-            //нажали кнопку "Пополнить"
-        } else if (e.getSource() == jbtnDeposit) {
-            deposit();
-        }
+//        //нажали кнопку "Снять"
+//        if (e.getSource() == jbtnWithdraw) {
+//            withdraw();
+//
+//            //нажали кнопку "Пополнить"
+//        } else if (e.getSource() == jbtnDeposit) {
+//            deposit();
+//        }
 
     }
 
@@ -92,124 +92,124 @@ public class Bankomat implements ActionListener {
         //показать результат в текстовом поле
         jlblBalance.setText(balance);
     }
-
-    //пополнение
-    private void deposit() {
-        // проверка - пополнять можно минимум 100
-        if (isValidDepsoit()) {
-            //получить введенные данные
-            double money = Double.parseDouble(jtxtMoney.getText());
-
-            //добавить деньги на счет
-            account.deposit(money);
-
-            //сообщение пользователю
-            JOptionPane.showMessageDialog(frame, "Пополнение прошло успешно", "Сообщение", JOptionPane.INFORMATION_MESSAGE);
-
-            // пересчет баланса
-            displayBalance();
-        }
-    }
-
-    //снятие
-    private void withdraw() {
-        // проверка на снятие суммы
-        if (isValidWithdrawal()) {
-            //получить введенные данные
-            int money = Integer.parseInt(jtxtMoney.getText());
-
-            //вычесть деньги со счета
-            account.withdraw(money);
-
-            //сообщение пользователю
-            JOptionPane.showMessageDialog(frame, "Снятие прошло успешно", "Сообщение", JOptionPane.INFORMATION_MESSAGE);
-
-            // пересчет баланса
-            displayBalance();
-        }
-    }
-
-    //проверка суммы для пополнения
-    private boolean isValidDepsoit() {
-        String message = "";
-
-        //если не число
-        if (!isDouble(jtxtMoney.getText())) {
-            message = "Введите число";
-
-            //если < 100
-        } else if (Double.parseDouble(jtxtMoney.getText()) < 100.0) {
-            message = "Минимум для пополнения: 100";
-
-            //если > 500
-        } else if (Double.parseDouble(jtxtMoney.getText()) > 500.0) {
-            message = "Максимум для пополнения: 500";
-
-            // если все ок
-        } else {
-            return true;
-        }
-
-        //сообщение пользователю об ошибке
-        JOptionPane.showMessageDialog(frame, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-        jtxtMoney.requestFocus();
-        jtxtMoney.selectAll();
-        return false;
-    }
-
-    //проверку на сумму снятия
-    private boolean isValidWithdrawal() {
-        String message = "";
-
-        //если не число
-        if (!isInteger(jtxtMoney.getText())) {
-            message = "Введите число";
-
-            //если < 10
-        } else if (Integer.parseInt(jtxtMoney.getText()) < 10) {
-            message = "Минимум для снятия: 10";
-
-            //если > 250
-        } else if (Integer.parseInt(jtxtMoney.getText()) > 250) {
-            message = "Максимум для снятия: 250";
-
-            // если не кратно 10
-        } else if (Integer.parseInt(jtxtMoney.getText()) % 10 != 0) {
-            message = "Сумма должна быть кратной 10";
-
-            // недостаточно средств
-        } else if (account.getBalance() - Integer.parseInt(jtxtMoney.getText()) < 0) {
-            message = "Недостаточно средств";
-
-            //если все ок
-        } else {
-            return true;
-        }
-
-        //сообщение пользователю
-        JOptionPane.showMessageDialog(frame, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-        jtxtMoney.requestFocus();
-        jtxtMoney.selectAll();
-        return false;
-    }
-
-    //проверка строки на тип Double
-    private boolean isDouble(String num) {
-        try {
-            Double.parseDouble(num);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    //проверка строки на тип Integer
-    private boolean isInteger(String num) {
-        try {
-            Integer.parseInt(num);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
+//
+//    //пополнение
+//    private void deposit() {
+//        // проверка - пополнять можно минимум 100
+//        if (isValidDepsoit()) {
+//            //получить введенные данные
+//            double money = Double.parseDouble(jtxtMoney.getText());
+//
+//            //добавить деньги на счет
+//            account.deposit(money);
+//
+//            //сообщение пользователю
+//            JOptionPane.showMessageDialog(frame, "Пополнение прошло успешно", "Сообщение", JOptionPane.INFORMATION_MESSAGE);
+//
+//            // пересчет баланса
+//            displayBalance();
+//        }
+//    }
+//
+//    //снятие
+//    private void withdraw() {
+//        // проверка на снятие суммы
+//        if (isValidWithdrawal()) {
+//            //получить введенные данные
+//            int money = Integer.parseInt(jtxtMoney.getText());
+//
+//            //вычесть деньги со счета
+//            account.withdraw(money);
+//
+//            //сообщение пользователю
+//            JOptionPane.showMessageDialog(frame, "Снятие прошло успешно", "Сообщение", JOptionPane.INFORMATION_MESSAGE);
+//
+//            // пересчет баланса
+//            displayBalance();
+//        }
+//    }
+//
+//    //проверка суммы для пополнения
+//    private boolean isValidDepsoit() {
+//        String message = "";
+//
+//        //если не число
+//        if (!isDouble(jtxtMoney.getText())) {
+//            message = "Введите число";
+//
+//            //если < 100
+//        } else if (Double.parseDouble(jtxtMoney.getText()) < 100.0) {
+//            message = "Минимум для пополнения: 100";
+//
+//            //если > 500
+//        } else if (Double.parseDouble(jtxtMoney.getText()) > 500.0) {
+//            message = "Максимум для пополнения: 500";
+//
+//            // если все ок
+//        } else {
+//            return true;
+//        }
+//
+//        //сообщение пользователю об ошибке
+//        JOptionPane.showMessageDialog(frame, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+//        jtxtMoney.requestFocus();
+//        jtxtMoney.selectAll();
+//        return false;
+//    }
+//
+//    //проверку на сумму снятия
+//    private boolean isValidWithdrawal() {
+//        String message = "";
+//
+//        //если не число
+//        if (!isInteger(jtxtMoney.getText())) {
+//            message = "Введите число";
+//
+//            //если < 10
+//        } else if (Integer.parseInt(jtxtMoney.getText()) < 10) {
+//            message = "Минимум для снятия: 10";
+//
+//            //если > 250
+//        } else if (Integer.parseInt(jtxtMoney.getText()) > 250) {
+//            message = "Максимум для снятия: 250";
+//
+//            // если не кратно 10
+//        } else if (Integer.parseInt(jtxtMoney.getText()) % 10 != 0) {
+//            message = "Сумма должна быть кратной 10";
+//
+//            // недостаточно средств
+//        } else if (account.getBalance() - Integer.parseInt(jtxtMoney.getText()) < 0) {
+//            message = "Недостаточно средств";
+//
+//            //если все ок
+//        } else {
+//            return true;
+//        }
+//
+//        //сообщение пользователю
+//        JOptionPane.showMessageDialog(frame, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+//        jtxtMoney.requestFocus();
+//        jtxtMoney.selectAll();
+//        return false;
+//    }
+//
+//    //проверка строки на тип Double
+//    private boolean isDouble(String num) {
+//        try {
+//            Double.parseDouble(num);
+//            return true;
+//        } catch (NumberFormatException e) {
+//            return false;
+//        }
+//    }
+//
+//    //проверка строки на тип Integer
+//    private boolean isInteger(String num) {
+//        try {
+//            Integer.parseInt(num);
+//            return true;
+//        } catch (NumberFormatException e) {
+//            return false;
+//        }
+//    }
 }

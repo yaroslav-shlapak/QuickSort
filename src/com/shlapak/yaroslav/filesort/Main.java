@@ -37,7 +37,8 @@ public class Main {
 	}
 
 	private static void setGUI() {
-		Bankomat gui = new Bankomat();
+		FileChooserDemo gui = new FileChooserDemo();
+		FileChooserDemo.run();
 	}
 
 	
